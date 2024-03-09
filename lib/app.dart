@@ -1,0 +1,86 @@
+import 'package:flutter/material.dart';
+import 'pages/home_page.dart';
+
+class App extends StatelessWidget {
+  const App({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Darkord',
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: const ColorScheme(
+          brightness: Brightness.light,
+          primary: Color(0xFF5151BC),
+          onPrimary: Color(0xFFFFFFFF),
+          primaryContainer: Color(0xFFE2DFFF),
+          onPrimaryContainer: Color(0xFF0B006B),
+          secondary: Color(0xFF006874),
+          onSecondary: Color(0xFFFFFFFF),
+          secondaryContainer: Color(0xFF97F0FF),
+          onSecondaryContainer: Color(0xFF001F24),
+          tertiary: Color(0xFF795369),
+          onTertiary: Color(0xFFFFFFFF),
+          tertiaryContainer: Color(0xFFFFD8EB),
+          onTertiaryContainer: Color(0xFF2F1124),
+          error: Color(0xFFBA1A1A),
+          errorContainer: Color(0xFFFFDAD6),
+          onError: Color(0xFFFFFFFF),
+          onErrorContainer: Color(0xFF410002),
+          background: Color(0xFFF8FDFF),
+          onBackground: Color(0xFF001F25),
+          surface: Color(0xFFF8FDFF),
+          onSurface: Color(0xFF001F25),
+          surfaceVariant: Color(0xFFE4E1EC),
+          onSurfaceVariant: Color(0xFF47464F),
+          outline: Color(0xFF777680),
+          onInverseSurface: Color(0xFFD6F6FF),
+          inverseSurface: Color(0xFF00363F),
+          inversePrimary: Color(0xFFC2C1FF),
+          shadow: Color(0xFF000000),
+          surfaceTint: Color(0xFF5151BC),
+          outlineVariant: Color(0xFFC8C5D0),
+          scrim: Color(0xFF000000),
+        ),
+      ),
+      darkTheme: ThemeData(
+        useMaterial3: true,
+        colorScheme: const ColorScheme(
+          brightness: Brightness.dark,
+          primary: Color(0xFFC2C1FF),
+          onPrimary: Color(0xFF201B8C),
+          primaryContainer: Color(0xFF3937A2),
+          onPrimaryContainer: Color(0xFFE2DFFF),
+          secondary: Color(0xFF4FD8EB),
+          onSecondary: Color(0xFF00363D),
+          secondaryContainer: Color(0xFF004F58),
+          onSecondaryContainer: Color(0xFF97F0FF),
+          tertiary: Color(0xFFE9B9D2),
+          onTertiary: Color(0xFF46263A),
+          tertiaryContainer: Color(0xFF5F3C51),
+          onTertiaryContainer: Color(0xFFFFD8EB),
+          error: Color(0xFFFFB4AB),
+          errorContainer: Color(0xFF93000A),
+          onError: Color(0xFF690005),
+          onErrorContainer: Color(0xFFFFDAD6),
+          background: Color(0xFF001F25),
+          onBackground: Color(0xFFA6EEFF),
+          surface: Color(0xFF001F25),
+          onSurface: Color(0xFFA6EEFF),
+          surfaceVariant: Color(0xFF47464F),
+          onSurfaceVariant: Color(0xFFC8C5D0),
+          outline: Color(0xFF918F9A),
+          onInverseSurface: Color(0xFF001F25),
+          inverseSurface: Color(0xFFA6EEFF),
+          inversePrimary: Color(0xFF5151BC),
+          shadow: Color(0xFF000000),
+          surfaceTint: Color(0xFFC2C1FF),
+          outlineVariant: Color(0xFF47464F),
+          scrim: Color(0xFF000000),
+        ),
+      ),
+      home: const HomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
+}
