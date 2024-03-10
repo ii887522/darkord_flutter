@@ -1,0 +1,16 @@
+{
+  "@@locale": "en",
+  "emailAddr": "Email address",
+  "emailAddrRequired": "Email address is required",
+  "emailAddrInvalid": "Invalid email address",
+  "password": "Password",
+  "passwordRequired": "Password is required",
+  "showingPassword": "Showing password",
+  "hidingPassword": "Hiding password",
+  "forgotPasswordLink": "I forgot my password :'(",
+  "login": "Login",
+  "noAccountQuestion": "Don't have an account?",
+  "signUp": "Sign up",
+  "version": "Version",
+  "copyright": "Copyright"
+}

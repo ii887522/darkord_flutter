@@ -1,13 +1,13 @@
 import 'package:go_router/go_router.dart';
-import 'pages/home_page.dart';
+import 'pages/user/login_page.dart';
 
 final router = GoRouter(
+  initialLocation: '/user/login',
   routes: [
+    // User module
     GoRoute(
-      path: '/',
-      builder: (context, state) {
-        return const HomePage(title: 'Flutter Demo Home Page');
-      },
+      path: '/user/login',
+      builder: (context, state) => const LoginPage(),
     ),
   ],
 );
