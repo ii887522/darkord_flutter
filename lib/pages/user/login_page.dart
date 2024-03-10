@@ -1,8 +1,10 @@
-import 'package:darkord_flutter/layouts/basic_layout.dart';
-import 'package:darkord_flutter/widgets/user/login_form.dart';
+import 'package:darkord_flutter/widgets/footer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:go_router/go_router.dart';
+import '../../layouts/basic_layout.dart';
 import '../../widgets/logo.dart';
+import '../../widgets/user/login_form.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -40,9 +42,7 @@ class LoginPage extends StatelessWidget {
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     minimumSize: const Size(0, 0),
                   ),
-                  onPressed: () {
-                    // TODO: Navigate to sign up page
-                  },
+                  onPressed: () => context.push('/user/sign-up'),
                   child: Text(
                     localizations.signUp,
                     style: const TextStyle(
@@ -54,21 +54,11 @@ class LoginPage extends StatelessWidget {
                 ),
               ],
             ),
+            const SizedBox(height: 64),
             const Expanded(
               child: Center(),
             ),
-            Text(
-              '${localizations.version} 1.0.0',
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: Colors.grey,
-                  ),
-            ),
-            Text(
-              '${localizations.copyright} © ${DateTime.now().year} ii887522',
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: Colors.grey,
-                  ),
-            ),
+            const Footer(),
             const SizedBox(height: 8),
           ],
         ),

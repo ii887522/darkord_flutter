@@ -2,6 +2,7 @@ import 'package:darkord_flutter/widgets/password_field.dart';
 import 'package:darkord_flutter/widgets/submit_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:go_router/go_router.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import '../../consts/index.dart';
 import '../../helpers/reactive_forms_helper.dart';
@@ -87,9 +88,7 @@ class LoginForm extends StatelessWidget {
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     minimumSize: const Size(0, 0),
                   ),
-                  onPressed: () {
-                    // TODO: Navigate to forgot password page
-                  },
+                  onPressed: () => context.push('/user/forgot-password'),
                   child: Text(
                     localizations.forgotPasswordLink,
                     style: DefaultTextStyle.of(context).style.copyWith(
