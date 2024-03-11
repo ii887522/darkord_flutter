@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:darkord_flutter/widgets/user/forgot_password_form.dart';
+
 import '../../helpers/index.dart';
 import '../../layouts/basic_layout.dart';
 import '../../widgets/footer.dart';
@@ -18,8 +20,8 @@ class ForgotPasswordPage extends StatelessWidget {
             SizedBox(height: 64),
             Logo(),
             SizedBox(height: 64),
-            // TODO: Implement forgot password form
-            SizedBox(height: 64),
+            ForgotPasswordForm(),
+            SizedBox(height: 32),
             Expanded(
               child: Center(),
             ),

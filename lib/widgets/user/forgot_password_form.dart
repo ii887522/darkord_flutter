@@ -6,11 +6,10 @@ import 'package:reactive_forms/reactive_forms.dart';
 
 import '../../consts/index.dart';
 import '../../helpers/reactive_forms_helper.dart';
-import '../../widgets/password_field.dart';
 import '../../widgets/submit_button.dart';
 
-class LoginForm extends StatelessWidget {
-  const LoginForm({super.key});
+class ForgotPasswordForm extends StatelessWidget {
+  const ForgotPasswordForm({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +22,6 @@ class LoginForm extends StatelessWidget {
           Validators.required,
           Validators.delegate(trimmed(Validators.email)),
         ],
-        passwordKey: ['', Validators.minLength(1)],
       }),
       builder: (context, formGroup, child) {
         return Column(
@@ -71,15 +69,6 @@ class LoginForm extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 32),
-            PasswordField(
-              formControlName: passwordKey,
-              validationMessages: {
-                ValidationMessage.minLength: (error) {
-                  return localizations.passwordRequired;
-                },
-              },
-            ),
-            const SizedBox(height: 8),
             Row(
               children: [
                 TextButton(
@@ -91,9 +80,9 @@ class LoginForm extends StatelessWidget {
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     minimumSize: Size.zero,
                   ),
-                  onPressed: () => context.push('/user/forgot-password'),
+                  onPressed: () => context.pop(),
                   child: Text(
-                    localizations.forgotPasswordLink,
+                    localizations.backToLogin,
                     style: DefaultTextStyle.of(context).style.copyWith(
                           decoration: TextDecoration.underline,
                           color: Theme.of(context).colorScheme.error,
@@ -105,12 +94,12 @@ class LoginForm extends StatelessWidget {
             ),
             const SizedBox(height: 64),
             SubmitButton(
-              icon: const Icon(Icons.login),
-              label: Text(localizations.login),
+              icon: const Icon(Icons.send),
+              label: Text(localizations.requestResetPassword),
               backgroundColor: Theme.of(context).colorScheme.primary,
               foregroundColor: Theme.of(context).colorScheme.onPrimary,
               onPressed: () {
-                // TODO: Perform actual login operation
+                // TODO: Request to reset my password
               },
             ),
           ],

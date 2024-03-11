@@ -13,5 +13,7 @@
   "noAccountQuestion": "Don't have an account?",
   "signUp": "Sign up",
   "version": "Version",
-  "copyright": "Copyright"
+  "copyright": "Copyright",
+  "backToLogin": "<- Back to login",
+  "requestResetPassword": "Request to reset my password"
 }
