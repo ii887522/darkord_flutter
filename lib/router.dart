@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 
+import 'pages/custom_transition_page.dart';
 import 'pages/user/forgot_password_page.dart';
 import 'pages/user/login_page.dart';
 import 'pages/user/sign_up_page.dart';
@@ -10,15 +11,33 @@ final router = GoRouter(
     // User module
     GoRoute(
       path: '/user/login',
-      builder: (context, state) => const LoginPage(),
+      pageBuilder: (context, state) {
+        return CustomTransitionPageExt.build(
+          context: context,
+          state: state,
+          child: const LoginPage(),
+        );
+      },
     ),
     GoRoute(
       path: '/user/forgot-password',
-      builder: (context, state) => const ForgotPasswordPage(),
+      pageBuilder: (context, state) {
+        return CustomTransitionPageExt.build(
+          context: context,
+          state: state,
+          child: const ForgotPasswordPage(),
+        );
+      },
     ),
     GoRoute(
       path: '/user/sign-up',
-      builder: (context, state) => const SignUpPage(),
+      pageBuilder: (context, state) {
+        return CustomTransitionPageExt.build(
+          context: context,
+          state: state,
+          child: const SignUpPage(),
+        );
+      },
     ),
   ],
 );
