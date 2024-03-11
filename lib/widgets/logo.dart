@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../helpers/index.dart';
+
 class Logo extends StatelessWidget {
   const Logo({super.key});
 
@@ -8,19 +12,19 @@ class Logo extends StatelessWidget {
     const logoWidth = 128.0;
     const logoHeight = 128.0;
 
+    final localizations = AppLocalizations.of(context)!;
+
     return Column(
       children: [
         Image.asset(
           'assets/images/favicon.png',
           width: logoWidth,
           height: logoHeight,
-          cacheWidth:
-              (logoWidth * MediaQuery.of(context).devicePixelRatio).toInt(),
-          cacheHeight:
-              (logoHeight * MediaQuery.of(context).devicePixelRatio).toInt(),
+          cacheWidth: calcCacheWidth(context, logoWidth),
+          cacheHeight: calcCacheHeight(context, logoHeight),
         ),
         Text(
-          'Darkord',
+          localizations.title,
           style: Theme.of(context).textTheme.displaySmall?.copyWith(
                 color: Colors.grey,
                 fontWeight: FontWeight.bold,

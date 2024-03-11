@@ -1,11 +1,13 @@
-import 'package:darkord_flutter/widgets/password_field.dart';
-import 'package:darkord_flutter/widgets/submit_button.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:reactive_forms/reactive_forms.dart';
+
 import '../../consts/index.dart';
 import '../../helpers/reactive_forms_helper.dart';
+import '../../widgets/password_field.dart';
+import '../../widgets/submit_button.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});
@@ -86,7 +88,7 @@ class LoginForm extends StatelessWidget {
                       borderRadius: BorderRadius.circular(0),
                     ),
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    minimumSize: const Size(0, 0),
+                    minimumSize: Size.zero,
                   ),
                   onPressed: () => context.push('/user/forgot-password'),
                   child: Text(
@@ -109,7 +111,7 @@ class LoginForm extends StatelessWidget {
               onPressed: () {
                 // TODO: Perform actual login operation
               },
-            )
+            ),
           ],
         );
       },

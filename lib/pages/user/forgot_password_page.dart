@@ -1,6 +1,8 @@
-import 'package:darkord_flutter/widgets/footer.dart';
 import 'package:flutter/material.dart';
+
+import '../../helpers/index.dart';
 import '../../layouts/basic_layout.dart';
+import '../../widgets/footer.dart';
 import '../../widgets/logo.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
@@ -10,9 +12,7 @@ class ForgotPasswordPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BasicLayout(
       child: SizedBox(
-        height: MediaQuery.of(context).size.height -
-            MediaQuery.of(context).padding.top -
-            MediaQuery.of(context).padding.bottom,
+        height: calcNonScrollablePageHeight(context),
         child: const Column(
           children: [
             SizedBox(height: 64),

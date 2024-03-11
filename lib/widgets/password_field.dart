@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:reactive_forms/reactive_forms.dart';
+
 import '../helpers/reactive_forms_helper.dart';
 
 class PasswordField extends StatefulWidget {
@@ -59,8 +61,8 @@ class _PasswordFieldState extends State<PasswordField> {
           icon: Icon(
             showPassword ? Icons.visibility : Icons.visibility_off,
             semanticLabel: showPassword
-                ? localizations.showingPassword
-                : localizations.hidingPassword,
+                ? localizations.passwordShowing
+                : localizations.passwordHiding,
           ),
           onPressed: () => setState(() => showPassword = !showPassword),
         ),

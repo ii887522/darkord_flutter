@@ -1,5 +1,6 @@
 {
   "dart.devToolsLocation": {
     "default": "external"
-  }
+  },
+  "dartimportsorter.sortOnSave": true
 }

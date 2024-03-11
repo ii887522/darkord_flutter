@@ -1,8 +1,11 @@
-import 'package:darkord_flutter/widgets/footer.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../helpers/index.dart';
 import '../../layouts/basic_layout.dart';
+import '../../widgets/footer.dart';
 import '../../widgets/logo.dart';
 import '../../widgets/user/login_form.dart';
 
@@ -15,9 +18,7 @@ class LoginPage extends StatelessWidget {
 
     return BasicLayout(
       child: SizedBox(
-        height: MediaQuery.of(context).size.height -
-            MediaQuery.of(context).padding.top -
-            MediaQuery.of(context).padding.bottom,
+        height: calcNonScrollablePageHeight(context),
         child: Column(
           children: [
             const SizedBox(height: 64),
