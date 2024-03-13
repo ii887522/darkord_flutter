@@ -15,5 +15,12 @@
   "version": "Version",
   "copyright": "Copyright",
   "backToLogin": "<- Back to login",
-  "requestResetPassword": "Request to reset my password"
+  "requestResetPassword": "Request to reset my password",
+  "username": "Username",
+  "usernameRequired": "Username is required",
+  "retypePassword": "Retype password",
+  "retypePasswordRequired": "Retype password is required",
+  "passwordMustSame": "Retype password is not the same as password",
+  "aboutMe": "About me",
+  "aboutMeHint": "Share something..."
 }

@@ -17,51 +17,55 @@ class LoginPage extends StatelessWidget {
     final localizations = AppLocalizations.of(context)!;
 
     return BasicLayout(
-      child: SizedBox(
-        height: calcNonScrollablePageHeight(context),
-        child: Column(
-          children: [
-            const SizedBox(height: 64),
-            const Logo(),
-            const SizedBox(height: 64),
-            const LoginForm(),
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  localizations.noAccountQuestion,
-                  style: TextStyle(color: Colors.grey[350]),
-                ),
-                const SizedBox(width: 4),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    padding: EdgeInsets.zero,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(0),
-                    ),
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    minimumSize: const Size(0, 0),
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          minHeight: calcNonScrollablePageHeight(context),
+        ),
+        child: IntrinsicHeight(
+          child: Column(
+            children: [
+              const SizedBox(height: 64),
+              const Logo(),
+              const SizedBox(height: 64),
+              const LoginForm(),
+              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    localizations.noAccountQuestion,
+                    style: TextStyle(color: Colors.grey[350]),
                   ),
-                  onPressed: () => context.push('/user/sign-up'),
-                  child: Text(
-                    localizations.signUp,
-                    style: const TextStyle(
-                      decoration: TextDecoration.underline,
-                      color: Colors.green,
-                      decorationColor: Colors.green,
+                  const SizedBox(width: 4),
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      padding: EdgeInsets.zero,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(0),
+                      ),
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      minimumSize: const Size(0, 0),
+                    ),
+                    onPressed: () => context.push('/user/sign-up'),
+                    child: Text(
+                      localizations.signUp,
+                      style: const TextStyle(
+                        decoration: TextDecoration.underline,
+                        color: Colors.green,
+                        decorationColor: Colors.green,
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 32),
-            const Expanded(
-              child: Center(),
-            ),
-            const Footer(),
-            const SizedBox(height: 8),
-          ],
+                ],
+              ),
+              const SizedBox(height: 64),
+              const Expanded(
+                child: Center(),
+              ),
+              const Footer(),
+              const SizedBox(height: 8),
+            ],
+          ),
         ),
       ),
     );

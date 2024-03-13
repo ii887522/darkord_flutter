@@ -8,11 +8,13 @@ import '../helpers/reactive_forms_helper.dart';
 class PasswordField extends StatefulWidget {
   final String formControlName;
   final Map<String, String Function(Object)>? validationMessages;
+  final Widget? label;
 
   const PasswordField({
     super.key,
     required this.formControlName,
     this.validationMessages,
+    this.label,
   });
 
   @override
@@ -43,20 +45,7 @@ class _PasswordFieldState extends State<PasswordField> {
           borderRadius: BorderRadius.all(Radius.circular(8)),
         ),
         isDense: true,
-        label: RichText(
-          text: TextSpan(
-            text: localizations.password,
-            style: DefaultTextStyle.of(context).style.copyWith(
-                  color: Colors.grey[350],
-                ),
-            children: [
-              TextSpan(
-                text: ' *',
-                style: TextStyle(color: Theme.of(context).colorScheme.error),
-              ),
-            ],
-          ),
-        ),
+        label: widget.label,
         suffixIcon: IconButton(
           icon: Icon(
             showPassword ? Icons.visibility : Icons.visibility_off,

@@ -4,8 +4,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-import '../../consts/index.dart';
 import '../../helpers/reactive_forms_helper.dart';
+import '../../validators/index.dart';
 import '../../widgets/password_field.dart';
 import '../../widgets/submit_button.dart';
 
@@ -17,19 +17,20 @@ class LoginForm extends StatelessWidget {
     final localizations = AppLocalizations.of(context)!;
 
     return ReactiveFormBuilder(
-      form: () => fb.group({
-        emailAddrKey: [
-          '',
-          Validators.required,
-          Validators.delegate(trimmed(Validators.email)),
-        ],
-        passwordKey: ['', Validators.minLength(1)],
+      form: () => FormGroup({
+        'email_addr': FormControl(
+          validators: [
+            Validators.required,
+            ValidatorsExt.trimmed(Validators.email),
+          ],
+        ),
+        'password': FormControl(validators: [Validators.required]),
       }),
       builder: (context, formGroup, child) {
         return Column(
           children: [
             ReactiveTextField(
-              formControlName: emailAddrKey,
+              formControlName: 'email_addr',
               showErrors: showErrors,
               validationMessages: {
                 ValidationMessage.required: (error) {
@@ -72,12 +73,28 @@ class LoginForm extends StatelessWidget {
             ),
             const SizedBox(height: 32),
             PasswordField(
-              formControlName: passwordKey,
+              formControlName: 'password',
               validationMessages: {
-                ValidationMessage.minLength: (error) {
+                ValidationMessage.required: (error) {
                   return localizations.passwordRequired;
                 },
               },
+              label: RichText(
+                text: TextSpan(
+                  text: localizations.password,
+                  style: DefaultTextStyle.of(context).style.copyWith(
+                        color: Colors.grey[350],
+                      ),
+                  children: [
+                    TextSpan(
+                      text: ' *',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.error,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
             const SizedBox(height: 8),
             Row(

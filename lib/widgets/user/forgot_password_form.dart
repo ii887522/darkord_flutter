@@ -4,8 +4,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-import '../../consts/index.dart';
 import '../../helpers/reactive_forms_helper.dart';
+import '../../validators/index.dart';
 import '../../widgets/submit_button.dart';
 
 class ForgotPasswordForm extends StatelessWidget {
@@ -16,18 +16,19 @@ class ForgotPasswordForm extends StatelessWidget {
     final localizations = AppLocalizations.of(context)!;
 
     return ReactiveFormBuilder(
-      form: () => fb.group({
-        emailAddrKey: [
-          '',
-          Validators.required,
-          Validators.delegate(trimmed(Validators.email)),
-        ],
+      form: () => FormGroup({
+        'email_addr': FormControl(
+          validators: [
+            Validators.required,
+            ValidatorsExt.trimmed(Validators.email),
+          ],
+        ),
       }),
       builder: (context, formGroup, child) {
         return Column(
           children: [
             ReactiveTextField(
-              formControlName: emailAddrKey,
+              formControlName: 'email_addr',
               showErrors: showErrors,
               validationMessages: {
                 ValidationMessage.required: (error) {
@@ -68,7 +69,7 @@ class ForgotPasswordForm extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 8),
             Row(
               children: [
                 TextButton(
