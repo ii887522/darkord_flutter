@@ -1,9 +1,13 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
+import 'package:amazon_cognito_identity_dart_2/cognito.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
+import '../../consts/user.dart';
 import '../../helpers/reactive_forms_helper.dart';
 import '../../validators/index.dart';
 import '../../widgets/password_field.dart';
@@ -226,8 +230,60 @@ class SignUpForm extends StatelessWidget {
               label: Text(localizations.signUp),
               backgroundColor: Colors.green,
               foregroundColor: Colors.black,
-              onPressed: () {
-                // TODO: Perform actual sign up operation
+              onPressed: () async {
+                final userPool = CognitoUserPool(
+                  cognitoUserPoolId,
+                  cognitoClientId,
+                );
+
+                try {
+                  await userPool.signUp(
+                    formGroup.control('email_addr').value.trim(),
+                    formGroup.control('password').value,
+                    userAttributes: [
+                      AttributeArg(
+                        name: 'preferred_username',
+                        value: formGroup.control('username').value.trim(),
+                      ),
+                      AttributeArg(
+                        name: 'email',
+                        value: formGroup.control('email_addr').value.trim(),
+                      ),
+
+                      // Reserved for future
+                      const AttributeArg(name: 'zoneinfo', value: ''),
+
+                      AttributeArg(
+                        name: 'locale',
+                        value: Platform.localeName.replaceFirst('_', '-'),
+                      ),
+                      AttributeArg(
+                        name: 'updated_at',
+                        value: DateTime.now().millisecondsSinceEpoch.toString(),
+                      ),
+                    ],
+                  );
+
+                  if (!context.mounted) return;
+                  context.pushReplacement('/user/login');
+                } catch (err) {
+                  if (!context.mounted) return;
+                  ScaffoldMessenger.of(context).hideCurrentSnackBar();
+
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(localizations.signUpFailed),
+                      action: SnackBarAction(
+                        label: localizations.close,
+                        onPressed: () {
+                          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                        },
+                      ),
+                      backgroundColor: Theme.of(context).colorScheme.error,
+                      behavior: SnackBarBehavior.floating,
+                    ),
+                  );
+                }
               },
             ),
           ],
