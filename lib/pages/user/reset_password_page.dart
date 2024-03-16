@@ -4,7 +4,6 @@ import '../../helpers/index.dart';
 import '../../layouts/basic_layout.dart';
 import '../../widgets/footer.dart';
 import '../../widgets/logo.dart';
-import '../../widgets/user/sign_up_form.dart';
 
 class ResetPasswordPage extends StatelessWidget {
   const ResetPasswordPage({super.key});
