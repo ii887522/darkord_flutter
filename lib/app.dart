@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import 'consts/index.dart';
 import 'router.dart';
 
 class App extends StatelessWidget {
@@ -15,6 +16,7 @@ class App extends StatelessWidget {
       routerConfig: router,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
+      scaffoldMessengerKey: scaffoldMessengerKey,
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: const ColorScheme(

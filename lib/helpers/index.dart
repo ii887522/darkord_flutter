@@ -1,15 +1,44 @@
 import 'package:flutter/material.dart';
 
-double calcNonScrollablePageHeight(BuildContext context) {
-  return MediaQuery.of(context).size.height -
-      MediaQuery.of(context).padding.top -
-      MediaQuery.of(context).padding.bottom;
-}
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-int calcCacheWidth(BuildContext context, double width) {
-  return (width * MediaQuery.of(context).devicePixelRatio).toInt();
-}
+import '../consts/index.dart';
 
-int calcCacheHeight(BuildContext context, double height) {
-  return calcCacheWidth(context, height);
+extension BuildContextExt on BuildContext {
+  double calcNonScrollablePageHeight() {
+    return MediaQuery.of(this).size.height -
+        MediaQuery.of(this).padding.top -
+        MediaQuery.of(this).padding.bottom;
+  }
+
+  int calcCacheWidth(double width) {
+    return (width * MediaQuery.of(this).devicePixelRatio).toInt();
+  }
+
+  int calcCacheHeight(double height) {
+    return calcCacheWidth(height);
+  }
+
+  void notify({
+    required Widget content,
+    required Color backgroundColor,
+    Duration duration = const Duration(seconds: 4),
+  }) {
+    final localizations = AppLocalizations.of(this)!;
+    scaffoldMessengerKey.currentState?.hideCurrentSnackBar();
+
+    scaffoldMessengerKey.currentState?.showSnackBar(
+      SnackBar(
+        content: content,
+        action: SnackBarAction(
+          label: localizations.close,
+          onPressed: () =>
+              scaffoldMessengerKey.currentState?.hideCurrentSnackBar(),
+        ),
+        backgroundColor: backgroundColor,
+        behavior: SnackBarBehavior.floating,
+        duration: duration,
+      ),
+    );
+  }
 }

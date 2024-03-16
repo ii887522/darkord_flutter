@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 
-import 'package:darkord_flutter/widgets/user/sign_up_form.dart';
-
 import '../../helpers/index.dart';
 import '../../layouts/basic_layout.dart';
 import '../../widgets/footer.dart';
 import '../../widgets/logo.dart';
+import '../../widgets/user/sign_up_form.dart';
 
-class SignUpPage extends StatelessWidget {
-  const SignUpPage({super.key});
+class ResetPasswordPage extends StatelessWidget {
+  const ResetPasswordPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +22,7 @@ class SignUpPage extends StatelessWidget {
               SizedBox(height: 64),
               Logo(),
               SizedBox(height: 64),
-              SignUpForm(),
+              // SignUpForm(),
               SizedBox(height: 64),
               Expanded(
                 child: Center(),

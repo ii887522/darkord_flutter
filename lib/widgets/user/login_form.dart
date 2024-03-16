@@ -40,7 +40,6 @@ class LoginForm extends StatelessWidget {
                   return localizations.emailAddrInvalid;
                 },
               },
-              autofocus: true,
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.emailAddress,
               style: DefaultTextStyle.of(context).style.copyWith(

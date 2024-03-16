@@ -19,7 +19,7 @@ class LoginPage extends StatelessWidget {
     return BasicLayout(
       child: ConstrainedBox(
         constraints: BoxConstraints(
-          minHeight: calcNonScrollablePageHeight(context),
+          minHeight: context.calcNonScrollablePageHeight(),
         ),
         child: IntrinsicHeight(
           child: Column(

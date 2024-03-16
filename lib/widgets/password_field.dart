@@ -55,6 +55,7 @@ class _PasswordFieldState extends State<PasswordField> {
           ),
           onPressed: () => setState(() => showPassword = !showPassword),
         ),
+        errorMaxLines: 2,
       ),
     );
   }

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
+import 'package:amazon_cognito_identity_dart_2/cognito.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
+import '../../consts/user.dart';
+import '../../helpers/index.dart';
 import '../../helpers/reactive_forms_helper.dart';
 import '../../validators/index.dart';
 import '../../widgets/submit_button.dart';
@@ -38,7 +41,6 @@ class ForgotPasswordForm extends StatelessWidget {
                   return localizations.emailAddrInvalid;
                 },
               },
-              autofocus: true,
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.emailAddress,
               style: DefaultTextStyle.of(context).style.copyWith(
@@ -99,8 +101,27 @@ class ForgotPasswordForm extends StatelessWidget {
               label: Text(localizations.requestResetPassword),
               backgroundColor: Theme.of(context).colorScheme.primary,
               foregroundColor: Theme.of(context).colorScheme.onPrimary,
-              onPressed: () {
-                // TODO: Request to reset my password
+              onPressed: () async {
+                final userPool = CognitoUserPool(
+                  cognitoUserPoolId,
+                  cognitoClientId,
+                );
+
+                final user = CognitoUser(
+                  formGroup.control('email_addr').value,
+                  userPool,
+                );
+
+                try {
+                  await user.forgotPassword();
+                } catch (err) {
+                  if (!context.mounted) return;
+
+                  context.notify(
+                    content: Text(localizations.forgotPasswordFailed),
+                    backgroundColor: Theme.of(context).colorScheme.error,
+                  );
+                }
               },
             ),
           ],

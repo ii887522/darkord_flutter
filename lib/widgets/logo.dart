@@ -20,8 +20,8 @@ class Logo extends StatelessWidget {
           'assets/images/favicon.png',
           width: logoWidth,
           height: logoHeight,
-          cacheWidth: calcCacheWidth(context, logoWidth),
-          cacheHeight: calcCacheHeight(context, logoHeight),
+          cacheWidth: context.calcCacheWidth(logoWidth),
+          cacheHeight: context.calcCacheHeight(logoHeight),
         ),
         Text(
           localizations.title,

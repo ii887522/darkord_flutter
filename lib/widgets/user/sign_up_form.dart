@@ -1,17 +1,14 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 
-import 'package:amazon_cognito_identity_dart_2/cognito.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-import '../../consts/user.dart';
 import '../../helpers/reactive_forms_helper.dart';
 import '../../validators/index.dart';
+import '../../validators/validation_message.dart';
 import '../../widgets/password_field.dart';
-import '../../widgets/submit_button.dart';
+import '../user/sign_up_button.dart';
 
 class SignUpForm extends StatelessWidget {
   const SignUpForm({super.key});
@@ -30,7 +27,16 @@ class SignUpForm extends StatelessWidget {
               ValidatorsExt.trimmed(Validators.email),
             ],
           ),
-          'password': FormControl(validators: [Validators.required]),
+          'password': FormControl(
+            validators: [
+              Validators.required,
+              Validators.minLength(8),
+              ValidatorsExt.containsNumber,
+              ValidatorsExt.containsUpper,
+              ValidatorsExt.containsLower,
+              ValidatorsExt.containsSpecialChar,
+            ],
+          ),
           'retype_password': FormControl(validators: [Validators.required]),
           'about_me': FormControl(),
         },
@@ -47,7 +53,6 @@ class SignUpForm extends StatelessWidget {
                   return localizations.usernameRequired;
                 },
               },
-              autofocus: true,
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.name,
               style: DefaultTextStyle.of(context).style.copyWith(
@@ -126,6 +131,21 @@ class SignUpForm extends StatelessWidget {
               validationMessages: {
                 ValidationMessage.required: (error) {
                   return localizations.passwordRequired;
+                },
+                ValidationMessage.minLength: (error) {
+                  return localizations.passwordMinLength;
+                },
+                ValidationMessageExt.containsNumber: (error) {
+                  return localizations.passwordContainsNumber;
+                },
+                ValidationMessageExt.containsUpper: (error) {
+                  return localizations.passwordContainsUpper;
+                },
+                ValidationMessageExt.containsLower: (error) {
+                  return localizations.passwordContainsLower;
+                },
+                ValidationMessageExt.containsSpecialChar: (error) {
+                  return localizations.passwordContainsSpecialChar;
                 },
               },
               label: RichText(
@@ -225,67 +245,7 @@ class SignUpForm extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 64),
-            SubmitButton(
-              icon: const Icon(Icons.app_registration),
-              label: Text(localizations.signUp),
-              backgroundColor: Colors.green,
-              foregroundColor: Colors.black,
-              onPressed: () async {
-                final userPool = CognitoUserPool(
-                  cognitoUserPoolId,
-                  cognitoClientId,
-                );
-
-                try {
-                  await userPool.signUp(
-                    formGroup.control('email_addr').value.trim(),
-                    formGroup.control('password').value,
-                    userAttributes: [
-                      AttributeArg(
-                        name: 'preferred_username',
-                        value: formGroup.control('username').value.trim(),
-                      ),
-                      AttributeArg(
-                        name: 'email',
-                        value: formGroup.control('email_addr').value.trim(),
-                      ),
-
-                      // Reserved for future
-                      const AttributeArg(name: 'zoneinfo', value: ''),
-
-                      AttributeArg(
-                        name: 'locale',
-                        value: Platform.localeName.replaceFirst('_', '-'),
-                      ),
-                      AttributeArg(
-                        name: 'updated_at',
-                        value: DateTime.now().millisecondsSinceEpoch.toString(),
-                      ),
-                    ],
-                  );
-
-                  if (!context.mounted) return;
-                  context.pushReplacement('/user/login');
-                } catch (err) {
-                  if (!context.mounted) return;
-                  ScaffoldMessenger.of(context).hideCurrentSnackBar();
-
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(localizations.signUpFailed),
-                      action: SnackBarAction(
-                        label: localizations.close,
-                        onPressed: () {
-                          ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                        },
-                      ),
-                      backgroundColor: Theme.of(context).colorScheme.error,
-                      behavior: SnackBarBehavior.floating,
-                    ),
-                  );
-                }
-              },
-            ),
+            SignUpButton(formGroup: formGroup),
           ],
         );
       },

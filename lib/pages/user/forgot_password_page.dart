@@ -15,7 +15,7 @@ class ForgotPasswordPage extends StatelessWidget {
     return BasicLayout(
       child: ConstrainedBox(
         constraints: BoxConstraints(
-          minHeight: calcNonScrollablePageHeight(context),
+          minHeight: context.calcNonScrollablePageHeight(),
         ),
         child: const IntrinsicHeight(
           child: Column(

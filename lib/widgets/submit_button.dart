@@ -7,6 +7,7 @@ class SubmitButton extends StatelessWidget {
   final Widget icon;
   final Color? backgroundColor;
   final Color? foregroundColor;
+  final bool isLoading;
   final void Function()? onPressed;
 
   const SubmitButton({
@@ -15,6 +16,7 @@ class SubmitButton extends StatelessWidget {
     required this.icon,
     this.backgroundColor,
     this.foregroundColor,
+    this.isLoading = false,
     required this.onPressed,
   });
 
@@ -22,7 +24,17 @@ class SubmitButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton.icon(
       label: label,
-      icon: icon,
+      icon: isLoading
+          ? Container(
+              width: 24,
+              height: 24,
+              padding: const EdgeInsets.all(2),
+              child: const CircularProgressIndicator(
+                color: Colors.white,
+                strokeWidth: 3,
+              ),
+            )
+          : icon,
       style: ElevatedButton.styleFrom(
         backgroundColor: backgroundColor,
         foregroundColor: foregroundColor,
@@ -30,7 +42,8 @@ class SubmitButton extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(8)),
         ),
       ),
-      onPressed: ReactiveForm.of(context)!.valid ? onPressed : null,
+      onPressed:
+          ReactiveForm.of(context)!.valid && !isLoading ? onPressed : null,
     );
   }
 }
