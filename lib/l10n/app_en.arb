@@ -16,6 +16,7 @@
   "passwordContainsSpecialChar": "Password must contain at least one special character",
   "forgotPasswordLink": "I forgot my password :'(",
   "forgotPasswordFailed": "Failed to request to reset password",
+  "forgotPasswordSuccess": "Successfully request to reset password. Please check your email to find your verification code before reset your password",
   "login": "Login",
   "noAccountQuestion": "Don't have an account?",
   "signUp": "Sign up",
