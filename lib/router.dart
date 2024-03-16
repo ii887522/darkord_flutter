@@ -7,9 +7,12 @@ import 'pages/user/reset_password_page.dart';
 import 'pages/user/sign_up_page.dart';
 
 final router = GoRouter(
-  initialLocation: '/user/login',
   routes: [
     // User module
+    GoRoute(
+      path: '/',
+      redirect: (context, state) => '/user/login',
+    ),
     GoRoute(
       path: '/user/login',
       pageBuilder: (context, state) {
@@ -41,12 +44,14 @@ final router = GoRouter(
       },
     ),
     GoRoute(
-      path: '/user/reset-password',
+      path: '/user/reset-password/:emailAddr',
       pageBuilder: (context, state) {
         return CustomTransitionPageExt.build(
           context: context,
           state: state,
-          child: const ResetPasswordPage(),
+          child: ResetPasswordPage(
+            emailAddr: state.pathParameters['emailAddr']!,
+          ),
         );
       },
     ),

@@ -32,5 +32,11 @@
   "retypePasswordRequired": "Retype password is required",
   "aboutMe": "About me",
   "aboutMeHint": "Share something...",
-  "close": "Close"
+  "close": "Close",
+  "resetPassword": "Reset password",
+  "resetPasswordSuccess": "Successfully reset your password",
+  "resetPasswordFailed": "Failed to reset your password",
+  "verificationCode": "Verification code",
+  "verificationCodeRequired": "Verification code is required",
+  "verificationCodeLength": "Verification code must be 6 characters"
 }

@@ -39,6 +39,7 @@ dependencies:
   amazon_cognito_identity_dart_2: ^3.6.2
   flutter_riverpod: ^2.5.1
   riverpod_annotation: ^2.3.5
+  reactive_pinput: ^3.0.0
 
 dev_dependencies:
   flutter_test:

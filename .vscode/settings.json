@@ -2,5 +2,8 @@
   "dart.devToolsLocation": {
     "default": "external"
   },
-  "dartimportsorter.sortOnSave": true
+  "dartimportsorter.sortOnSave": true,
+  "files.exclude": {
+    "**/*.g.dart": true
+  },
 }

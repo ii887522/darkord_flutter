@@ -9,16 +9,16 @@ import '../../consts/user.dart';
 import '../../helpers/index.dart';
 import '../submit_button.dart';
 
-class ForgotPasswordButton extends StatefulWidget {
+class ResetPasswordButton extends StatefulWidget {
   final FormGroup formGroup;
 
-  const ForgotPasswordButton({super.key, required this.formGroup});
+  const ResetPasswordButton({super.key, required this.formGroup});
 
   @override
-  State<ForgotPasswordButton> createState() => _ForgotPasswordButtonState();
+  State<ResetPasswordButton> createState() => _ResetPasswordButtonState();
 }
 
-class _ForgotPasswordButtonState extends State<ForgotPasswordButton> {
+class _ResetPasswordButtonState extends State<ResetPasswordButton> {
   var isLoading = false;
 
   @override
@@ -26,10 +26,11 @@ class _ForgotPasswordButtonState extends State<ForgotPasswordButton> {
     final localizations = AppLocalizations.of(context)!;
 
     return SubmitButton(
-      icon: const Icon(Icons.send),
-      label: Text(localizations.requestResetPassword),
-      backgroundColor: Theme.of(context).colorScheme.primary,
-      foregroundColor: Theme.of(context).colorScheme.onPrimary,
+      icon: const Icon(Icons.restart_alt),
+      label: Text(localizations.resetPassword),
+      backgroundColor: Colors.orange,
+      foregroundColor: Colors.black,
+      isLoading: isLoading,
       onPressed: () async {
         final userPool = CognitoUserPool(
           cognitoUserPoolId,
@@ -41,21 +42,25 @@ class _ForgotPasswordButtonState extends State<ForgotPasswordButton> {
 
         try {
           setState(() => isLoading = true);
-          await user.forgotPassword();
+
+          await user.confirmPassword(
+            widget.formGroup.control('verification_code').value,
+            widget.formGroup.control('password').value,
+          );
+
           if (!context.mounted) return;
 
           context.notify(
-            content: Text(localizations.forgotPasswordSuccess),
+            content: Text(localizations.resetPasswordSuccess),
             backgroundColor: Colors.green,
-            duration: const Duration(seconds: 10),
           );
 
-          context.pushReplacement('/user/reset-password/$emailAddr');
+          context.pop();
         } catch (err) {
           if (!context.mounted) return;
 
           context.notify(
-            content: Text(localizations.forgotPasswordFailed),
+            content: Text(localizations.resetPasswordFailed),
             backgroundColor: Theme.of(context).colorScheme.error,
           );
         } finally {

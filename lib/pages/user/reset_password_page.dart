@@ -4,9 +4,12 @@ import '../../helpers/index.dart';
 import '../../layouts/basic_layout.dart';
 import '../../widgets/footer.dart';
 import '../../widgets/logo.dart';
+import '../../widgets/user/reset_password_form.dart';
 
 class ResetPasswordPage extends StatelessWidget {
-  const ResetPasswordPage({super.key});
+  final String emailAddr;
+
+  const ResetPasswordPage({super.key, required this.emailAddr});
 
   @override
   Widget build(BuildContext context) {
@@ -15,19 +18,19 @@ class ResetPasswordPage extends StatelessWidget {
         constraints: BoxConstraints(
           minHeight: context.calcNonScrollablePageHeight(),
         ),
-        child: const IntrinsicHeight(
+        child: IntrinsicHeight(
           child: Column(
             children: [
-              SizedBox(height: 64),
-              Logo(),
-              SizedBox(height: 64),
-              // SignUpForm(),
-              SizedBox(height: 64),
-              Expanded(
+              const SizedBox(height: 64),
+              const Logo(),
+              const SizedBox(height: 64),
+              ResetPasswordForm(emailAddr: emailAddr),
+              const SizedBox(height: 64),
+              const Expanded(
                 child: Center(),
               ),
-              Footer(),
-              SizedBox(height: 8),
+              const Footer(),
+              const SizedBox(height: 8),
             ],
           ),
         ),
