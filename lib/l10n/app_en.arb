@@ -18,6 +18,7 @@
   "forgotPasswordFailed": "Failed to request to reset password",
   "forgotPasswordSuccess": "Successfully request to reset password. Please check your email to find your verification code before reset your password",
   "login": "Login",
+  "loginWrongCredentials": "Either email address or password is incorrect",
   "noAccountQuestion": "Don't have an account?",
   "signUp": "Sign up",
   "signUpFailed": "Failed to sign up",
@@ -35,7 +36,7 @@
   "close": "Close",
   "resetPassword": "Reset password",
   "resetPasswordSuccess": "Successfully reset your password",
-  "resetPasswordFailed": "Failed to reset your password",
+  "resetPasswordFailed": "Verification code is incorrect",
   "verificationCode": "Verification code",
   "verificationCodeRequired": "Verification code is required",
   "verificationCodeLength": "Verification code must be 6 characters"

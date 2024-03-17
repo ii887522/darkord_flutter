@@ -6,11 +6,12 @@ part of 'login_form.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$loginFormHash() => r'4cb553febf63167c4e8e6dd922eace3aa6ba1686';
+String _$loginFormHash() => r'6dc7c637b9ed7f63589f254eba9077dfcdcf30a0';
 
 /// See also [loginForm].
 @ProviderFor(loginForm)
-final loginFormProvider = Provider<FormGroup>.internal(
+final loginFormProvider =
+    AutoDisposeProvider<(KeepAliveLink, FormGroup)>.internal(
   loginForm,
   name: r'loginFormProvider',
   debugGetCreateSourceHash:
@@ -19,6 +20,6 @@ final loginFormProvider = Provider<FormGroup>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef LoginFormRef = ProviderRef<FormGroup>;
+typedef LoginFormRef = AutoDisposeProviderRef<(KeepAliveLink, FormGroup)>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

@@ -8,7 +8,7 @@ import 'package:reactive_forms/reactive_forms.dart';
 import '../../helpers/reactive_forms_helper.dart';
 import '../../riverpod/user/login_form.dart';
 import '../../widgets/password_field.dart';
-import '../../widgets/submit_button.dart';
+import '../../widgets/user/login_button.dart';
 
 class LoginForm extends ConsumerWidget {
   const LoginForm({super.key});
@@ -16,7 +16,7 @@ class LoginForm extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final localizations = AppLocalizations.of(context)!;
-    final formGroup = ref.watch(loginFormProvider);
+    final (keepAliveLink, formGroup) = ref.watch(loginFormProvider);
 
     return ReactiveForm(
       formGroup: formGroup,
@@ -113,15 +113,7 @@ class LoginForm extends ConsumerWidget {
             ],
           ),
           const SizedBox(height: 64),
-          SubmitButton(
-            icon: const Icon(Icons.login),
-            label: Text(localizations.login),
-            backgroundColor: Theme.of(context).colorScheme.primary,
-            foregroundColor: Theme.of(context).colorScheme.onPrimary,
-            onPressed: () {
-              // TODO: Perform actual login operation
-            },
-          ),
+          LoginButton(keepAliveLink: keepAliveLink, formGroup: formGroup),
         ],
       ),
     );

@@ -43,7 +43,7 @@ class _ForgotPasswordButtonState extends State<ForgotPasswordButton> {
           cognitoClientId,
         );
 
-        final emailAddr = widget.formGroup.control('email_addr').value;
+        final emailAddr = widget.formGroup.control('email_addr').value.trim();
         final user = CognitoUser(emailAddr, userPool);
 
         try {

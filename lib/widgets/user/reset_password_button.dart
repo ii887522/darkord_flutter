@@ -43,7 +43,7 @@ class _ResetPasswordButtonState extends State<ResetPasswordButton> {
           cognitoClientId,
         );
 
-        final emailAddr = widget.formGroup.control('email_addr').value;
+        final emailAddr = widget.formGroup.control('email_addr').value.trim();
         final user = CognitoUser(emailAddr, userPool);
 
         try {
