@@ -1,4 +1,7 @@
 {
+  "cognitoApiBaseUrl": "https://cognito-idp.ap-southeast-1.amazonaws.com",
   "cognitoUserPoolId": "ap-southeast-1_LbXZtTTSr",
-  "cognitoClientId": "1o85lt8688tesoel2itgkqicq8"
+  "cognitoClientId": "1o85lt8688tesoel2itgkqicq8",
+  "darkordHttpApiBaseUrl": "https://dw8pxvs42wyq5.cloudfront.net",
+  "darkordWsApiBaseUrl": "wss://dw8pxvs42wyq5.cloudfront.net/ws"
 }
