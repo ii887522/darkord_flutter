@@ -15,7 +15,7 @@ class ForgotPasswordForm extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final localizations = AppLocalizations.of(context)!;
-    final formGroup = ref.watch(forgotPasswordFormProvider);
+    final (keepAliveLink, formGroup) = ref.watch(forgotPasswordFormProvider);
 
     return ReactiveForm(
       formGroup: formGroup,
@@ -87,7 +87,10 @@ class ForgotPasswordForm extends ConsumerWidget {
             ],
           ),
           const SizedBox(height: 64),
-          ForgotPasswordButton(formGroup: formGroup),
+          ForgotPasswordButton(
+            keepAliveLink: keepAliveLink,
+            formGroup: formGroup,
+          ),
         ],
       ),
     );

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:amazon_cognito_identity_dart_2/cognito.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -10,9 +11,14 @@ import '../../helpers/index.dart';
 import '../submit_button.dart';
 
 class ForgotPasswordButton extends StatefulWidget {
+  final KeepAliveLink keepAliveLink;
   final FormGroup formGroup;
 
-  const ForgotPasswordButton({super.key, required this.formGroup});
+  const ForgotPasswordButton({
+    super.key,
+    required this.keepAliveLink,
+    required this.formGroup,
+  });
 
   @override
   State<ForgotPasswordButton> createState() => _ForgotPasswordButtonState();
@@ -30,6 +36,7 @@ class _ForgotPasswordButtonState extends State<ForgotPasswordButton> {
       label: Text(localizations.requestResetPassword),
       backgroundColor: Theme.of(context).colorScheme.primary,
       foregroundColor: Theme.of(context).colorScheme.onPrimary,
+      isLoading: isLoading,
       onPressed: () async {
         final userPool = CognitoUserPool(
           cognitoUserPoolId,
@@ -42,6 +49,7 @@ class _ForgotPasswordButtonState extends State<ForgotPasswordButton> {
         try {
           setState(() => isLoading = true);
           await user.forgotPassword();
+          widget.keepAliveLink.close();
           if (!context.mounted) return;
 
           context.notify(
