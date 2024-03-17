@@ -62,7 +62,7 @@ class CodeField extends StatelessWidget {
           defaultPinTheme: defaultPinTheme,
           focusedPinTheme: focusedPinTheme,
           errorPinTheme: errorPinTheme,
-          forceErrorState: formGroup.control(formControlName).invalid,
+          forceErrorState: showErrors(formGroup.control(formControlName)),
           errorTextStyle: DefaultTextStyle.of(context).style.copyWith(
                 fontSize: 12,
                 color: Theme.of(context).colorScheme.error,
