@@ -20,7 +20,7 @@ class ResetPasswordForm extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final localizations = AppLocalizations.of(context)!;
-    final formGroup = ref.watch(resetPasswordFormProvider);
+    final (keepAliveLink, formGroup) = ref.watch(resetPasswordFormProvider);
     formGroup.control('email_addr').value = emailAddr;
 
     return ReactiveForm(
@@ -182,7 +182,10 @@ class ResetPasswordForm extends ConsumerWidget {
             ],
           ),
           const SizedBox(height: 64),
-          ResetPasswordButton(formGroup: formGroup),
+          ResetPasswordButton(
+            keepAliveLink: keepAliveLink,
+            formGroup: formGroup,
+          ),
         ],
       ),
     );
