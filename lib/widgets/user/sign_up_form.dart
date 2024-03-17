@@ -17,7 +17,7 @@ class SignUpForm extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final localizations = AppLocalizations.of(context)!;
-    final formGroup = ref.watch(signUpFormProvider);
+    final (keepAliveLink, formGroup) = ref.watch(signUpFormProvider);
 
     return ReactiveForm(
       formGroup: formGroup,
@@ -223,7 +223,7 @@ class SignUpForm extends ConsumerWidget {
             ],
           ),
           const SizedBox(height: 64),
-          SignUpButton(formGroup: formGroup),
+          SignUpButton(keepAliveLink: keepAliveLink, formGroup: formGroup),
         ],
       ),
     );

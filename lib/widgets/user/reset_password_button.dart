@@ -64,7 +64,7 @@ class _ResetPasswordButtonState extends State<ResetPasswordButton> {
             backgroundColor: Theme.of(context).colorScheme.error,
           );
         } finally {
-          setState(() => isLoading = false);
+          if (context.mounted) setState(() => isLoading = false);
         }
       },
     );

@@ -59,7 +59,7 @@ class _ForgotPasswordButtonState extends State<ForgotPasswordButton> {
             backgroundColor: Theme.of(context).colorScheme.error,
           );
         } finally {
-          setState(() => isLoading = false);
+          if (context.mounted) setState(() => isLoading = false);
         }
       },
     );
