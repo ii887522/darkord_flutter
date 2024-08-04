@@ -1,0 +1,18 @@
+{
+  "recommendations": [
+    "google.arb-editor",
+    "aaron-bond.better-comments",
+    "codeium.codeium",
+    "dart-code.dart-code",
+    "aziznal.dart-import-sorter",
+    "editorconfig.editorconfig",
+    "dart-code.flutter",
+    "mhutchie.git-graph",
+    "github.vscode-github-actions",
+    "eamodio.gitlens",
+    "visualstudioexptteam.vscodeintellicode",
+    "yzhang.markdown-all-in-one",
+    "christian-kohler.path-intellisense",
+    "esbenp.prettier-vscode"
+  ]
+}
